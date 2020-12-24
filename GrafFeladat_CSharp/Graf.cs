@@ -63,6 +63,24 @@ namespace GrafFeladat_CSharp
             elek.Add(new El(cs1, cs2));
             elek.Add(new El(cs2, cs1));
         }
+        public void Töröl(int cs1, int cs2)
+        {
+            if (cs1 < 0 || cs1 >= csucsokSzama ||
+                cs2 < 0 || cs2 >= csucsokSzama)
+            {
+                throw new ArgumentOutOfRangeException("Hibas csucs index");
+            }
+            foreach (var el in elek)
+            {
+                if (el.Csucs1 == cs1 && el.Csucs2 == cs2)
+                {
+                    return;
+                }
+            }
+
+            elek.Remove(new El(cs1, cs2));
+            elek.Remove(new El(cs2, cs1));
+        }
 
         public override string ToString()
         {
